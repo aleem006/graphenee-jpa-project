@@ -9,10 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import io.graphenee.vaadin.domain.DashboardUser;
 
+@NamedQuery(name="Student.authenticate", query = "Select s from Student s where studentName = :studentName AND password = :password")
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements DashboardUser {
  
 	@Id
 	@Column(name = "student_id")
@@ -29,31 +31,40 @@ public class Student {
 	
 	@Column(name = "password")
 	private String password;
+//	
+//	@Column(name = "gender")
+//	private GenderEnum gender;
 
 //	@ManyToOne
 //	@JoinColumn(name = "id_teacher")
 //	private Teacher teacher;
-
+	
+	@Override
 	public String getPassword() {
 		return password;
 	}
 
+	@Override
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	@Override
 	public String getFirstName() {
 		return firstName;
 	}
 
+	@Override
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	@Override
 	public String getLastName() {
 		return lastName;
 	}
-
+	
+	@Override
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -86,7 +97,29 @@ public class Student {
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-	
+
+	@Override
+	public String getUsername() {
+		return studentName;
+	}
+
+	@Override
+	public void setUsername(String username) {
+		this.studentName = username;
+	}
+
+	@Override
+	public GenderEnum getGender() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGender(GenderEnum gender) {
+		// TODO Auto-generated method stub
+		
+	}
+
 //	public String getTeacher() {
 //		return teacher.getTeacherName();
 //	}

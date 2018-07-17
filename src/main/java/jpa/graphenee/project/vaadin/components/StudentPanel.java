@@ -50,7 +50,7 @@ public class StudentPanel extends AbstractEntityListPanel<Student>{
 
 	@Override
 	protected String[] visibleProperties() {
-		return null;
+		return new String[] {"studentId", "studentName", "password", "firstName", "lastName"};
 	}
 
 	@Override
